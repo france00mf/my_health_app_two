@@ -3,6 +3,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/providers/auth_provider.dart';
+import 'package:my_health_app_two/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
 main()async{
