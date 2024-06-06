@@ -1,19 +1,30 @@
 
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 main()async{
   WidgetsFlutterBinding.ensureInitialized(
-    // awai
+    
   );
+  await Firebase.initializeApp(
+      options: FirebaseOptions(apiKey: "", appId: "", messagingSenderId: "", projectId: "");
+    )
+  ;
 }
 
 class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+   MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> AuthProvider()),
+        ChangeNotifierProvider(create: (_)=> CartProvider,),
+      ],
+      child: Scaffold());
   }
 }
