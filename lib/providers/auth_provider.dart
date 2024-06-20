@@ -20,4 +20,18 @@ class AuthProvider  extends ChangeNotifier{
     _isSignedIn = true;
     notifyListeners();
   }
+
+  void signInWithPhone(BuildContext context, String phoneNumber)async{
+    try {
+      await _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {
+          
+        }
+      );
+
+    } catch (e) {
+      
+    }
+  }
 }
