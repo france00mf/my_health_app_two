@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/presenters/view/welcome/welcome_screen.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:my_health_app_two/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,13 @@ main()async{
     
   );
   await Firebase.initializeApp(
-      options: FirebaseOptions(apiKey: "", appId: "", messagingSenderId: "", projectId: "")
+      options: FirebaseOptions(
+          apiKey: 'AIzaSyBgJWK28boXrIxEQgF16H4LyA0yzfUtilY',
+    appId: '1:910506037178:android:7cda3121a1529d32bdd783',
+    messagingSenderId: '910506037178',
+    projectId: 'my-health-app-ao-two',
+    storageBucket: 'my-health-app-ao-two.appspot.com',
+      )
     )
   ;
 }
@@ -27,6 +34,10 @@ class MyWidget extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> AuthProvider()),
         ChangeNotifierProvider(create: (_)=> CartProvider(),),
       ],
-      child: Scaffold());
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'My Health AO SYS',
+        home: WelcomeScreen(),
+      ));
   }
 }

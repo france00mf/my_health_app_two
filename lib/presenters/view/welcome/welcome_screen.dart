@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatefulWidget{
   const WelcomeScreen({super.key});
@@ -14,7 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final app= Provider.of<AuthProvider>(context,listen: false);
+    final app = Provider.of<AuthProvider>(context,listen: false);
 
     return Scaffold(
       body: SafeArea(
