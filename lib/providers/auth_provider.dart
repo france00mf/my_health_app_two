@@ -11,6 +11,13 @@ class AuthProvider  extends ChangeNotifier{
   void checkSign() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     _isSignedIn = prefs.getBool("is_signedin") ?? false;
-    nofityListeners();
+    notifyListeners();
+  }
+
+  Future setSignIn() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("is_signedin", true);
+    _isSignedIn = true;
+    notifyListeners();
   }
 }
