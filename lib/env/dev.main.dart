@@ -38,6 +38,10 @@ class MyWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'My Health AO SYS',
         home: WelcomeScreen(),
+        theme: ThemeData(
+          primaryColor: Color(0xFF3E69FE),
+          // textTheme: 
+        ),
       ));
   }
 }
