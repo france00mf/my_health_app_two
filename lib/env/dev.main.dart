@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_health_app_two/presenters/view/welcome/welcome_screen.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:my_health_app_two/providers/cart_provider.dart';
@@ -40,7 +41,8 @@ class MyWidget extends StatelessWidget {
         home: WelcomeScreen(),
         theme: ThemeData(
           primaryColor: Color(0xFF3E69FE),
-          // textTheme: 
+          textTheme: GoogleFonts.openSansTextTheme(),
+          appBarTheme: AppBarTheme(color: Color(0xFF3E69FE))
         ),
       ));
   }
