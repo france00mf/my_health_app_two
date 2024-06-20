@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "910506037178",
+    "project_id": "my-health-app-ao-two",
+    "storage_bucket": "my-health-app-ao-two.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910506037178:android:5a4b207871f6ba18bdd783",
+        "android_client_info": {
+          "package_name": "com.example.digi_diagnos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJWK28boXrIxEQgF16H4LyA0yzfUtilY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910506037178:android:7cda3121a1529d32bdd783",
+        "android_client_info": {
+          "package_name": "com.example.my_health_app_two"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJWK28boXrIxEQgF16H4LyA0yzfUtilY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,7 @@ main()async{
     
   );
   await Firebase.initializeApp(
-      options: FirebaseOptions(apiKey: "", appId: "", messagingSenderId: "", projectId: "");
+      options: FirebaseOptions(apiKey: "", appId: "", messagingSenderId: "", projectId: "")
     )
   ;
 }
@@ -25,7 +25,7 @@ class MyWidget extends StatelessWidget {
     return  MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=> AuthProvider()),
-        ChangeNotifierProvider(create: (_)=> CartProvider,),
+        ChangeNotifierProvider(create: (_)=> CartProvider(),),
       ],
       child: Scaffold());
   }
