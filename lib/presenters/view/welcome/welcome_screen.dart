@@ -20,7 +20,59 @@ class _WelcomeScreenState extends State<WelcomeScreen>{
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Padding(padding: EdgeInsets.symmetric(vertical: 25, horizontal: 35)),
+          child: Padding(padding: EdgeInsets.symmetric(vertical: 25, horizontal: 35,
+          ),
+          child: Column(
+            children: [
+                Image.asset(
+                  "assets/images/doctors.png",
+                  height: 300,
+                ),
+
+                const Text(
+                  "Bora começar?",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                   const SizedBox(height: 10),
+                const Text(
+                  "Comece Agora, e verás magia",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: CustomButton(
+                    onPressed: () async{
+                      if (ap.isSignedIn == true) {
+                        await ap.getDataFromSp().whenComplete(
+                          ()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const NavBar()))
+                        );
+                      }else{
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterScreen(),
+                          ),
+                        );
+                      }
+                    },
+                    text: "Começar",
+                  ),
+                )
+
+            ],
+          ),
+          ),
         ),
       ),
     );
