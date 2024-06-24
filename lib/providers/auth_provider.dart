@@ -56,11 +56,24 @@ class AuthProvider  extends ChangeNotifier{
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async{
           await _firebaseAuth.signInWithCredential(phoneAuthCredential);
-        }
+        
+        },
+      verificationFailed: (error){
+        throw Exception(error.message);
+      }
+      codeSent: (vericationId, forceResendingToken){
+        Navigator.push(context, MaterialPageRoute(
+
+           builder: (context) => OtpScreen(verificationId: verificationId),
+        )){
+          
+        };
+      },
+      codeAutoRetrievalTimeout: (verificationId){}
       );
 
-    } catch (e) {
-      
+    } on FirebaseAuthException catch (e) {
+        showSnackBar(context, e.message.toString());
     }
   }
 }
