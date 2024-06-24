@@ -1,11 +1,16 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/model/booking_model.dart';
+import 'package:my_health_app_two/model/lab_model.dart';
+import 'package:my_health_app_two/model/test_model.dart';
+import 'package:my_health_app_two/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider  extends ChangeNotifier{
-    bool _isSignedIn = false;
+  bool _isSignedIn = false;
   bool get isSignedIn => _isSignedIn;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -49,8 +54,8 @@ class AuthProvider  extends ChangeNotifier{
     try {
       await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {
-
+        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async{
+          await _firebaseAuth.signInWithCredential(phoneAuthCredential);
         }
       );
 
