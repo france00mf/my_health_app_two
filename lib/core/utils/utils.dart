@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void showSnackBar(BuildContext context, String content){
@@ -6,3 +8,11 @@ void showSnackBar(BuildContext context, String content){
   );
 }
 
+
+Future<File?> pickImage(BuildContext context)async{
+  try {
+    
+  } catch (e) {
+    
+  }
+}
