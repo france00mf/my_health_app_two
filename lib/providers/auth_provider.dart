@@ -65,7 +65,7 @@ class AuthProvider  extends ChangeNotifier{
         },
       verificationFailed: (error){
         throw Exception(error.message);
-      }
+      },
       codeSent: (vericationId, forceResendingToken){
         Navigator.push(context, MaterialPageRoute(
 
