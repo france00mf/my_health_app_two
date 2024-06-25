@@ -193,4 +193,9 @@ class AuthProvider  extends ChangeNotifier{
       _uid = userModel.uid;
     });
   }
+
+  Future saveUserDataToSP() async{
+    SharedPreferences s = await SharedPreferences.getInstance();
+    await s.setString("user_model", jsonEncode(userModel.toMap()));
+  }
 }
