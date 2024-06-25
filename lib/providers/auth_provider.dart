@@ -166,4 +166,15 @@ class AuthProvider  extends ChangeNotifier{
         showSnackBar(context, verifyExp.message.toString());
     }
   }
+
+  Future<bool> checkExistingUser() async{
+    DocumentSnapshot snapshot = await _firebaseFirestore.collection("users").doc(_uid).get();
+    if(snapshot .exists){
+      print("Usuário existente");
+      return true;
+    }else{
+      print("Usuário novo, provavelmente");
+      return false;
+    }
+  }
 }
