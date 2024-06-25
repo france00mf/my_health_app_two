@@ -1,7 +1,6 @@
 
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_health_app_two/presenters/view/welcome/welcome_screen.dart';
@@ -14,7 +13,7 @@ main()async{
     
   );
   await Firebase.initializeApp(
-      options: FirebaseOptions(
+      options: const FirebaseOptions(
           apiKey: 'AIzaSyBgJWK28boXrIxEQgF16H4LyA0yzfUtilY',
     appId: '1:910506037178:android:7cda3121a1529d32bdd783',
     messagingSenderId: '910506037178',
@@ -26,7 +25,7 @@ main()async{
 }
 
 class MyWidget extends StatelessWidget {
-   MyWidget({super.key});
+ const  MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +34,14 @@ class MyWidget extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> AuthProvider()),
         ChangeNotifierProvider(create: (_)=> CartProvider(),),
       ],
-      child: MaterialApp(
+      child:  MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'My Health AO SYS',
-        home: WelcomeScreen(),
-        theme: ThemeData(
-          primaryColor: Color(0xFF3E69FE),
+        home: const WelcomeScreen(),
+        theme:  ThemeData(
+          primaryColor:const Color(0xFF3E69FE),
           textTheme: GoogleFonts.openSansTextTheme(),
-          appBarTheme: AppBarTheme(color: Color(0xFF3E69FE))
+          appBarTheme: const AppBarTheme(color: Color(0xFF3E69FE))
         ),
       ));
   }

@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/presenters/components/custom_button.dart';
