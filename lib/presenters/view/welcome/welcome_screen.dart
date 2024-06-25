@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/presenters/components/custom_button.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -53,8 +54,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>{
                   height: 50,
                   child: CustomButton(
                     onPressed: () async{
-                      if (ap.isSignedIn == true) {
-                        await ap.getDataFromSp().whenComplete(
+                      if (app.isSignedIn == true) {
+                        await app.getDataFromSp().whenComplete(
                           ()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const NavBar()))
                         );
                       }else{
