@@ -8,7 +8,13 @@ class RecendCodeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: Text(text),
+      child: Text(text,
+             style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple,
+                    ),
+      ),
       onPressed: onPressed,
     );
   }

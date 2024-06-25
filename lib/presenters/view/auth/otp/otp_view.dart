@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/presenters/components/custom_button.dart';
+import 'package:my_health_app_two/presenters/components/recend_code_button.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
@@ -107,7 +108,18 @@ class _OtpViewState extends State<OtpView> {
                           showSnackBar(context, "Digite o código com 6 caracter");
                         }
                       }),
-                    )                 
+                    ),
+
+                     const SizedBox(height: 20),
+                  const Text(
+                    "Não recebeu o código?",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black38,
+                    ),
+                  ),   
+                  RecendCodeButton(onPressed: (){}, text: "Reenviar código")            
               ],
             ), ),
           ),
