@@ -129,10 +129,26 @@ class _OtpViewState extends State<OtpView> {
         )),
     );
   }
-}
 
 void verifyOtp(){
   final authMethods= Provider.of<AuthProvider>(context, listen: false);
 
-  authMethods.verifyOtp();
+  authMethods.verifyOtp(
+    context: context,
+    verificationId: widget.verificationId,
+    otpCodeUser: userOtp,
+    onSucess: (){
+      authMethods.checkExistingUser().then(
+        (userExists) async{
+          if(userExists == true) {
+            authMethods.getDataFromFireStore().then(
+              
+            );
+          }
+        }
+      );
+    }
+  );
 }
+}
+
