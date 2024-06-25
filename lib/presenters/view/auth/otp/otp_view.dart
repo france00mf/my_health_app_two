@@ -3,6 +3,7 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/presenters/components/custom_button.dart';
+import 'package:my_health_app_two/presenters/components/nav_route.dart';
 import 'package:my_health_app_two/presenters/components/recend_code_button.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:pinput/pinput.dart';
@@ -142,7 +143,14 @@ void verifyOtp(){
         (userExists) async{
           if(userExists == true) {
             authMethods.getDataFromFireStore().then(
-              
+              (userData)=> authMethods.saveUserDataToSp().then(
+                (spDataFrom) => authMethods.setSignIn().then((SignValue) =>Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NavBar(),
+                        ),
+                            (route) => false), )
+              )
             );
           }
         }
