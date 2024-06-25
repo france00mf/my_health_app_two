@@ -12,6 +12,7 @@ import 'package:my_health_app_two/model/booking_model.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/model/test_model.dart';
 import 'package:my_health_app_two/model/user_model.dart';
+import 'package:my_health_app_two/presenters/view/auth/otp/otp_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider  extends ChangeNotifier{
@@ -67,10 +68,14 @@ class AuthProvider  extends ChangeNotifier{
         throw Exception(error.message);
       },
       codeSent: (vericationId, forceResendingToken){
-        Navigator.push(context, MaterialPageRoute(
-
-           builder: (context) => OtpScreen(verificationId: verificationId),
-        )){
+         Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OtpView(verificationId: verificationId),
+              ),
+            );
+        
+        {
           
         };
       },
