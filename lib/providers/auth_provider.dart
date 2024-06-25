@@ -1,8 +1,11 @@
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/model/booking_model.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
@@ -78,7 +81,12 @@ class AuthProvider  extends ChangeNotifier{
     }
   }
 
-  void saveUserDataToFirebase({})
+  void saveUserDataToFirebase({
+    required BuildContext context,
+    required UserModel userModel,
+    required File profilePic,
+    required Function onSuccess,
+  })
   async
   {
     _isLoading = true;
@@ -92,8 +100,22 @@ class AuthProvider  extends ChangeNotifier{
             userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
           }
         ); 
-    } catch (e) {
-      
+        _userModel= userModel;
+
+        // Gravar os dados para o server (Firebase)
+        await _firebaseAuth.collection("users").doc(_uid).set(userModel.toMap()).then(
+          (users){
+            onSuccess();
+            _isLoading=false;
+            notifyListeners();
+          }
+        );
+
+
+    } on FirebaseAuthException catch (e) {
+        showSnackBar(context, e.message.toString());
+        _isLoading= false;
+        notifyListeners();
     }
   }
 }
