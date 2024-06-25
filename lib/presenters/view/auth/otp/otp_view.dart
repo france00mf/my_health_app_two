@@ -131,7 +131,8 @@ class _OtpViewState extends State<OtpView> {
     );
   }
 
-void verifyOtp(){
+void verifyOtp(  BuildContext context,
+  String userOtp){
   final authMethods= Provider.of<AuthProvider>(context, listen: false);
 
   authMethods.verifyOtp(
