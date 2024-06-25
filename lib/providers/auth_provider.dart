@@ -177,4 +177,20 @@ class AuthProvider  extends ChangeNotifier{
       return false;
     }
   }
+
+  Future getDataFromFireStore() async{
+    await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).get().then((user){
+      _userModel = UserModel(
+           name: user['name'],
+        email: user['email'],
+        createdAt: user['createdAt'],
+        bio: user['bio'],
+        uid: user['uid'],
+        profilePic: user['profilePic'],
+        phoneNumber: user['phoneNumber'],
+        role: user['role'],
+      );
+      _uid = userModel.uid;
+    });
+  }
 }
