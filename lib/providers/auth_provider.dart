@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/model/booking_model.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/model/test_model.dart';
@@ -74,6 +75,25 @@ class AuthProvider  extends ChangeNotifier{
 
     } on FirebaseAuthException catch (e) {
         showSnackBar(context, e.message.toString());
+    }
+  }
+
+  void saveUserDataToFirebase({})
+  async
+  {
+    _isLoading = true;
+    notifyListeners();
+    try {
+        await storeFileToStorage("profilePic/$_uid", profilePic).then(
+          (store){
+            userModel.profilePic = store;
+            userModel.createdAt = DateTime.now().millisecondsSinceEpoch.toString();
+            userModel.phoneNumber = _firebaseAuth.currentUser!.phoneNumber!;
+            userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
+          }
+        ); 
+    } catch (e) {
+      
     }
   }
 }
