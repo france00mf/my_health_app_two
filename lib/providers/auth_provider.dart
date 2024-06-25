@@ -68,7 +68,7 @@ class AuthProvider  extends ChangeNotifier{
       verificationFailed: (error){
         throw Exception(error.message);
       },
-      codeSent: (vericationId, forceResendingToken){
+      codeSent: (verificationId, forceResendingToken){
          Navigator.push(
               context,
               MaterialPageRoute(
@@ -110,13 +110,15 @@ class AuthProvider  extends ChangeNotifier{
         _userModel= userModel;
 
         // Gravar os dados para o server (Firebase)
-        await _firebaseAuth.collection("users").doc(_uid).set(userModel.toMap()).then(
-          (users){
-            onSuccess();
-            _isLoading=false;
-            notifyListeners();
-          }
-        );
+        await _firebaseFirestore
+          .collection("users")
+          .doc(_uid)
+          .set(userModel.toMap())
+          .then((value) {
+        onSuccess();
+        _isLoading = false;
+        notifyListeners();
+      });
 
 
     } on FirebaseAuthException catch (e) {
@@ -150,7 +152,7 @@ class AuthProvider  extends ChangeNotifier{
     _isLoading= true;
     notifyListeners();
     try {
-        PhoneAuthCredential credential = PhoneAuthCredential.credential(
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: otpCodeUser
         );
 
