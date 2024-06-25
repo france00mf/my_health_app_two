@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
 import 'package:my_health_app_two/presenters/components/custom_button.dart';
@@ -15,7 +17,8 @@ class OtpView extends StatefulWidget {
 }
 
 class _OtpViewState extends State<OtpView> {
-  
+  String? otpCode;
+
   @override
   Widget build(BuildContext context) {
       final isLoading =
@@ -103,7 +106,7 @@ class _OtpViewState extends State<OtpView> {
                       child: CustomButton(text: "Verificar", onPressed: (){
                         if (otpCode != null){
                           print("verificando otp: ${otpCode}");
-                          verifyOto(context, otpCode!);
+                          verifyOtp(context, otpCode!);
                         }else{
                           showSnackBar(context, "Digite o código com 6 caracter");
                         }
@@ -126,4 +129,10 @@ class _OtpViewState extends State<OtpView> {
         )),
     );
   }
+}
+
+void verifyOtp(){
+  final authMethods= Provider.of<AuthProvider>(context, listen: false);
+
+  authMethods.verifyOtp();
 }

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_health_app_two/core/utils/utils.dart';
@@ -138,5 +139,31 @@ class AuthProvider  extends ChangeNotifier{
     _userModel = UserModel.fromMap(jsonDecode(data));
     _uid = _userModel!.uid;
     notifyListeners();
+  }
+
+  void verifyOtp({
+    required BuildContext context,
+    required String verificationId,
+    required String otpCodeUser,
+    required Function onSucess,
+  }) async{
+    _isLoading= true;
+    notifyListeners();
+    try {
+        PhoneAuthCredential credential = PhoneAuthCredential.credential(
+          verificationId: verificationId, smsCode: otpCodeUser
+        );
+
+        User? user = (await _firebaseAuth.signInWithCredential(credential)).user;
+
+        if(user != null){
+          _uid = user.uid;
+          onSucess();
+        }
+        _isLoading = false;
+        notifyListeners();
+    } on FirebaseAuthException catch (verifyExp) {
+        showSnackBar(context, verifyExp.message.toString());
+    }
   }
 }
