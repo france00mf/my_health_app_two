@@ -67,6 +67,83 @@ class _HomeViewState extends State<HomeView> {
         ),
         ),
       ),
+      drawer: Drawer(
+        child: Consumer<AuthProvider>(builder:(context, authProvider, child){
+         return ListView(
+           children: [
+             DrawerHeader(child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(authProvider.userModel.profilePic),
+                ),
+                SizedBox(width: 16,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(authProvider.isSignedIn ? authProvider.userModel.name ?? "" : "Convidado"),
+                    const SizedBox(height: 3,),
+                    Text(authProvider.isSignedIn ? authProvider.userModel.phoneNumber ?? "" :"", 
+                    style: TextStyle(
+                      color: Colors.white,
+                       fontSize: 11
+                    ),
+                    ),
+                  ],
+                )
+                     ],), decoration: BoxDecoration(
+              color: Colors.amber[600],
+              shape: BoxShape.rectangle
+             ),
+             
+             ),
+             ListTile(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              title: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(Icons.home_outlined),
+                  SizedBox(width: 8,),
+                  Text("Home",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  )  
+                ],
+              ),
+             ),
+            const Divider(
+              thickness: 1.4,
+              indent: 35,
+             ),
+             ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.search_outlined),
+                SizedBox(width: 8,),
+                Text("Pesquisar",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                ),
+                ),
+              ],
+              ),
+              
+             ),
+           ],
+         );
+         
+        },),
+      ),
+      body: Scaffold(),
     );
   }
 }
