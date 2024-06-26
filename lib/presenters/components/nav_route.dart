@@ -1,7 +1,5 @@
 
 
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/presenters/view/cart/cart_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
@@ -40,6 +38,7 @@ class _NavBarState extends State<NavBar> {
         selectedItemColor: Color(0xFF3E69FE),
         unselectedItemColor: Colors.black54,
         currentIndex: selectedIndex,
+        
         onTap: (index){
           setState(() {
             selectedIndex = index;
@@ -49,8 +48,22 @@ class _NavBarState extends State<NavBar> {
         
         BottomNavigationBarItem(icon: Icon(Icons.home_filled),
         label: "Home"
-        )],
+        ),
+        BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined),
+              label: "Agendar",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.percent_sharp),
+              label: "Ofertas",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.perm_identity),
+              label: "Perfil",
+            ),
+        ],
       ),
+     body: screens[selectedIndex],
       floatingActionButton: FloatingActionButton(
         onPressed: (){
              Navigator.push(context, MaterialPageRoute(builder: (context) => CartView(cartProvider: cartProvider),));
