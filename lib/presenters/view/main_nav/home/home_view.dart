@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/presenters/view/search/search_view.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -123,6 +124,12 @@ class _HomeViewState extends State<HomeView> {
               indent: 35,
              ),
              ListTile(
+              onTap: (){
+                 Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SearchView()),
+                          );
+              },
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -143,7 +150,20 @@ class _HomeViewState extends State<HomeView> {
          
         },),
       ),
-      body: Scaffold(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(left: 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Row(
+              
+            ),
+            
+            )
+          ],
+        ),
+      ),
     );
   }
 }

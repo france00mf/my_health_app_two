@@ -28,6 +28,13 @@
             "deviceId": "emulator-5554",
             "program": "lib/env/dev.main.dart"
         },
+        {
+            "name": "Tecno",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "0678625162112122",
+            "program": "lib/env/dev.main.dart"
+        },
 
     ]
 }
