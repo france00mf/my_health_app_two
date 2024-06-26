@@ -26,7 +26,24 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 5,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Color(0xFF3E69FE),
+        unselectedItemColor: Colors.black54,
+        currentIndex: selectedIndex,
+        onTap: (index){
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        items: [BottomNavigationBarItem(icon: Icon(Icons.home_filled),
+        label: "Home"
+        )],
+      ),
+    );
   }
 }
 
