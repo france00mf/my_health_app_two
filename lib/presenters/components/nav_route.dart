@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/presenters/view/cart/cart_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/home/home_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/profile/profile_view.dart';
@@ -39,10 +40,16 @@ class _NavBarState extends State<NavBar> {
             selectedIndex = index;
           });
         },
-        items: [BottomNavigationBarItem(icon: Icon(Icons.home_filled),
+        items: [
+        
+        BottomNavigationBarItem(icon: Icon(Icons.home_filled),
         label: "Home"
         )],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+             Navigator.push(context, MaterialPageRoute(builder: (context) => CartView(cartProvider: CartView),));
+      })
     );
   }
 }
