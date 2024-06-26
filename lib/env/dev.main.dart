@@ -20,8 +20,8 @@ main()async{
     projectId: 'my-health-app-ao-two',
     storageBucket: 'my-health-app-ao-two.appspot.com',
       )
-    )
-  ;
+    );
+    runApp(MyWidget());
 }
 
 class MyWidget extends StatelessWidget {
