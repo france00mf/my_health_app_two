@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -10,13 +11,27 @@ class SearchView extends StatefulWidget {
 class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: SafeArea(child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+
+                    child: const Icon(
+                      Icons.close_outlined,
+                      size: 35,
+                    ),
+                    onTap: ()=> Navigator.pop(context),
+                  )
+              ],)
+            ],
+          ),
         ),
       )),
     );

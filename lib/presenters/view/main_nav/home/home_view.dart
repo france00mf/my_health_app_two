@@ -58,13 +58,12 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 5,
-        shadowColor: Colors.grey,
-        title: Text('Diagonistico',
+        title: const Text('Diagonistico',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w500,
             letterSpacing: 1,
+            color: Colors.white
         ),
         ),
       ),
@@ -157,9 +156,138 @@ class _HomeViewState extends State<HomeView> {
           children: [
             Padding(padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Row(
-              
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage("assets/images/doctor1.jpg"),
+                  ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    RichText(text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: const [
+                          TextSpan(
+                                text: 'Ola',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                
+                           TextSpan(
+                                text: 'Bem-Vindo!',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                      ]
+                    )),
+                    IconButton(
+                    icon: Icon(Icons.add_alert_outlined),
+                    onPressed: () {
+                    },
+                  ),
+                  ],
+                ),
+              ],
             ),
             
+            ),
+
+          const  SizedBox(height: 10,),
+
+            Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                  ),
+                  child: const Row(
+                    children: [
+                      Padding(padding: EdgeInsets.all(8),
+                      child: Icon(
+                        Icons.search_outlined,
+                        color: Colors.black,
+                      ),
+                      ),
+                      Expanded(child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Procure por Serviços",
+                          border: InputBorder.none
+                        ),
+                      ))
+                    ],
+                  ),
+                ),),
+
+                SizedBox(
+                  width: 10,
+                ),
+                IconButton(onPressed: (){}, icon: Icon(Icons.filter_list_outlined))
+              ],
+            ),
+            ),
+            
+            SizedBox(height: 10,),
+
+             Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+            child:  Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                   const Text("Serviços",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500
+                    ),
+                    ),
+                    
+                    TextButton(onPressed: (){}, child: 
+                   const  Row(
+                              children:  [
+                                Text(
+                                  "Ver todos",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                SizedBox(width: 4,),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                ),
+                              ],
+                            ),
+                                 
+                    
+                    style: ButtonStyle(
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
+                              backgroundColor: MaterialStateProperty.all(const Color(0xFF3E69FE)),
+                              foregroundColor: MaterialStateProperty.all(Colors.white),
+                              elevation: MaterialStateProperty.all(5),
+                            ),),
+                 ],
+               )
+            ],),
             )
           ],
         ),
