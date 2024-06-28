@@ -73,10 +73,6 @@ class AuthProvider  extends ChangeNotifier{
                 builder: (context) => OtpView(verificationId: verificationId),
               ),
             );
-        
-        {
-          
-        };
       },
       codeAutoRetrievalTimeout: (verificationId){}
       );
