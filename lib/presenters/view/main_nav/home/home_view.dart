@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/model/test_model.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
@@ -286,6 +287,33 @@ class _HomeViewState extends State<HomeView> {
                               elevation: MaterialStateProperty.all(5),
                             ),),
                  ],
+               ),
+               FutureBuilder<List<TestModel>>(
+                future: authProvider.fetchTests(),
+                builder: ((context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return Center(child: CircularProgressIndicator());
+                  }else if(snapshot.hasError){
+                    return Center(child: Text("Erro : ${snapshot.error}"));
+                  }else if(!snapshot.hasData || snapshot.data!.isEmpty){
+                    return Center(child: Text("Sem testes disponíveis"),);
+                  }else {
+                    List<TestModel> testsModel = snapshot.data!;
+                    return GridView.builder(
+                      shrinkWrap: true,
+                          controller: ScrollController(
+                            keepScrollOffset: false,
+                          ),
+                          padding: EdgeInsets.only(top: 10.0),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 10.0, 
+                            crossAxisSpacing: 10.0, 
+                          ),
+                          
+                    )
+                  }
+                })
                )
             ],),
             )
