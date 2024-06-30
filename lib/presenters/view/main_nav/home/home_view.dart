@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/test_model.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
+import 'package:my_health_app_two/presenters/view/tests/tests_view.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -310,8 +311,48 @@ class _HomeViewState extends State<HomeView> {
                             mainAxisSpacing: 10.0, 
                             crossAxisSpacing: 10.0, 
                           ),
-                          
-                    )
+                          itemCount: tests.length,
+                          itemBuilder: (context,index)=> GestureDetector(
+                            onTap: (){
+                              print("${testsModel[index].name} -> Teste selecionado");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => TestsViewDetails(test: testsModel[index])
+                                )); 
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF3E69FE),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.health_and_safety_rounded,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                    // Add your image here
+                                    Container(
+                                      padding: EdgeInsets.all(2.0),
+                                      child: Text(
+                                        testsModel[index].name,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ),
+
+                    );
                   }
                 })
                )
