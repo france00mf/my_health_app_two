@@ -195,5 +195,14 @@ class AuthProvider  extends ChangeNotifier{
     await s.setString("user_model", jsonEncode(userModel.toMap()));
   }
 
-  
+  Future<List<TestModel>> fetchTests()async{
+    try {
+      QuerySnapshot querySnapshot = await _firebaseFirestore.collection('services').get();
+      _tests = querySnapshot.docs.map((docTestsModel) => TestModel.fromMap(docTestsModel.data() as Map<String,dynamic>)).toList();
+      return _tests;
+    } catch (e) {
+      print('Erro ao receber os testes: $e');
+      throw e;
+    }
+  }
 }
