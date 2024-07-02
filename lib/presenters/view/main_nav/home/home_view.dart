@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/test_model.dart';
+import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
 import 'package:my_health_app_two/presenters/view/tests/tests_view.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
@@ -351,6 +352,31 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                               ),
                           ),
+
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Top Laboratórios",
+                                     style: TextStyle(
+                              fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                          ),
+                                    )
+                                  ]
+                                )
+                              ],
+                            )
+                          ),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AllBookingsView()),)
+                            }
+                          )
 
                     );
                   }
