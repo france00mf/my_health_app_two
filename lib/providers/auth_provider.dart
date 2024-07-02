@@ -205,4 +205,16 @@ class AuthProvider  extends ChangeNotifier{
       throw e;
     }
   }
+
+  Future<List<LabModel>> fetchLabs() async{
+    try {
+        QuerySnapshot querySnapshot = await _firebaseFirestore.collection('labs').get();
+        _labs = querySnapshot.docs.map((doc) => LabModel.fromMap(doc.data() as Map<String, dynamic>)).toList();
+        return _labs;
+    } catch (e) {
+        print("Erro ao pegar os laboratórios: $e");
+        throw e;
+    }
+  }
+
 }
