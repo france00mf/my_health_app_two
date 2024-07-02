@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/test_model.dart';
+import 'package:my_health_app_two/presenters/view/lab/all_labs_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
 import 'package:my_health_app_two/presenters/view/tests/tests_view.dart';
@@ -374,8 +375,28 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AllBookingsView()),)
-                            }
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AllLabView()),);
+                            },
+                            style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20), // Set a circular border radius
+                              ),
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xFF3E69FE)),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            elevation: MaterialStateProperty.all(5)),
+                            child: Row(children: [
+                              Text("Ver todos,",
+                              style: TextStyle(fontSize: 12),
+                              ),
+                              Icon(Icons.arrow_forward_ios,
+                              size: 12)
+                            ],),
                           )
 
                     );
