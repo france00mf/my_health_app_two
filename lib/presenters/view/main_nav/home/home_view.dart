@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/model/test_model.dart';
 import 'package:my_health_app_two/presenters/view/lab/all_labs_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
@@ -403,7 +404,27 @@ class _HomeViewState extends State<HomeView> {
                               Icon(Icons.arrow_forward_ios,
                               size: 12)
                             ],),
-                          )
+                          ),
+
+                          FutureBuilder<List<LabModel>>(future: authProvider.fetchLabs(), builder: (context,snapshot){
+                            if(snapshot.connectionState == ConnectionState.waiting){
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }else if(snapshot.hasError){
+                              return Center(child: Text("Error: ${snapshot.error}"),);
+                            }else if(!snapshot.hasData || snapshot.data!.isEmpty){
+                                return Center(child: Text("Sem Laboratórios Top Disponível"),);
+                            } else{
+                              List<LabModel> topLabs = snapshot.data!;
+
+                              return Column(children: [
+                                LabCard(lab: topLabs[0]),
+                                SizedBox(height: 5,),
+                                LabCard(lab: topLabs[0]),
+                              ],);
+                            }
+                          })
             ],),
             )
           ],
