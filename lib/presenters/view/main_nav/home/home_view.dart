@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/model/test_model.dart';
-import 'package:my_health_app_two/presenters/view/lab/all_labs_view.dart';
+import 'package:my_health_app_two/presenters/view/lab/all_bals/all_labs_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
 import 'package:my_health_app_two/presenters/view/tests/tests_view.dart';
