@@ -354,6 +354,12 @@ class _HomeViewState extends State<HomeView> {
                               ),
                           ),
 
+
+                    );
+                  }
+                })
+               ),
+               
                           SizedBox(height: 10),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -398,11 +404,6 @@ class _HomeViewState extends State<HomeView> {
                               size: 12)
                             ],),
                           )
-
-                    );
-                  }
-                })
-               )
             ],),
             )
           ],
