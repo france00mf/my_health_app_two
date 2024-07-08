@@ -426,6 +426,75 @@ class _HomeViewState extends State<HomeView> {
                             }
                           })
             ],),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Pacotes de estilo de vida",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500
+                      )
+                      ),
+                      TextButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20),
+                              ),
+                            ),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.black)),
+                        onPressed: (){}, child: const Row(children: [
+                          Text("Ver todos"),
+                          Icon(Icons.arrow_forward_ios)
+                        ],)),
+
+                        GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                        ) , itemBuilder: (context,index){
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(packages_imagePaths[index],
+                                width: 80,
+                                height: 60,
+                                ),
+                                SizedBox(height: 2,)
+                              Expanded(
+                              child: Text(
+                                packages[index],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors
+                                      .black,
+                                ),
+                                textAlign: TextAlign.center,
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),),
+                            ],),
+                          );
+                        })
+                    ],)
+                ]
+              )
             )
           ],
         ),

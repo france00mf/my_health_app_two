@@ -7,6 +7,7 @@ import 'package:my_health_app_two/providers/auth_provider.dart';
 class LabCard extends StatelessWidget{
   final LabModel lab;
 
+
   const LabCard({super.key, required this.lab});
   
   @override
