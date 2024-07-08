@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/model/test_model.dart';
+import 'package:my_health_app_two/presenters/components/lab_card.dart';
 import 'package:my_health_app_two/presenters/view/lab/all_bals/all_labs_view.dart';
 import 'package:my_health_app_two/presenters/view/main_nav/all_book/all_bookin_view.dart';
 import 'package:my_health_app_two/presenters/view/search/search_view.dart';
@@ -300,75 +301,78 @@ class _HomeViewState extends State<HomeView> {
                             ),),
                  ],
                ),
-               FutureBuilder<List<TestModel>>(
-                future: authProvider.fetchTests(),
-                builder: ((context, snapshot) {
-                  if(snapshot.connectionState == ConnectionState.waiting){
-                    return Center(child: CircularProgressIndicator());
-                  }else if(snapshot.hasError){
-                    return Center(child: Text("Erro : ${snapshot.error}"));
-                  }else if(!snapshot.hasData || snapshot.data!.isEmpty){
-                    return Center(child: Text("Sem testes disponíveis"),);
-                  }else {
-                    List<TestModel> testsModel = snapshot.data!;
-                    return GridView.builder(
-                      shrinkWrap: true,
-                          controller: ScrollController(
-                            keepScrollOffset: false,
-                          ),
-                          padding: EdgeInsets.only(top: 10.0),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 10.0, 
-                            crossAxisSpacing: 10.0, 
-                          ),
-                          itemCount: tests.length,
-                          itemBuilder: (context,index)=> GestureDetector(
-                            onTap: (){
-                              print("${testsModel[index].name} -> Teste selecionado");
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => TestsViewDetails(test: testsModel[index])
-                                )); 
-                            },
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF3E69FE),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.health_and_safety_rounded,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                    // Add your image here
-                                    Container(
-                                      padding: EdgeInsets.all(2.0),
-                                      child: Text(
-                                        testsModel[index].name,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                          ),
+              //  FutureBuilder<List<TestModel>>(
+              //   future: authProvider.fetchTests(),
+              //   builder: ((context, snapshot) {
+              //     if(snapshot.connectionState == ConnectionState.waiting){
+              //       return Center(child: CircularProgressIndicator());
+              //     }else if(snapshot.hasError){
+              //       return Center(child: Text("Erro : ${snapshot.error}"));
+              //     }else if(!snapshot.hasData || snapshot.data!.isEmpty){
+              //       return Center(child: Text("Sem testes disponíveis"),);
+              //     }else {
+              //       List<TestModel> testsModel = snapshot.data!;
+              //       return GridView.builder(
+              //         shrinkWrap: true,
+              //             controller: ScrollController(
+              //               keepScrollOffset: false,
+              //             ),
+              //             padding: EdgeInsets.only(top: 10.0),
+              //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //               crossAxisCount: 3,
+              //               mainAxisSpacing: 10.0, 
+              //               crossAxisSpacing: 10.0, 
+              //             ),
+              //             itemCount: tests.length,
+              //             itemBuilder: (context,index)=> GestureDetector(
+              //               onTap: (){
+              //                 print("${testsModel[index].name} -> Teste selecionado");
+              //                 Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(builder: (context) => TestsViewDetails(test: testsModel[index])
+              //                   )); 
+              //               },
+              //               child: Container(
+              //                   decoration: BoxDecoration(
+              //                     color: Color(0xFF3E69FE),
+              //                     borderRadius: BorderRadius.circular(10),
+              //                   ),
+              //                   child: Column(
+              //                     mainAxisAlignment: MainAxisAlignment.center,
+              //                     crossAxisAlignment: CrossAxisAlignment.center,
+              //                     children: [
+              //                       Icon(
+              //                         Icons.health_and_safety_rounded,
+              //                         size: 50,
+              //                         color: Colors.white,
+              //                       ),
+              //                       // Add your image here
+              //                       Container(
+              //                         padding: EdgeInsets.all(2.0),
+              //                         child: Text(
+              //                           testsModel[index].name,
+              //                           style: TextStyle(
+              //                             fontSize: 16,
+              //                             fontWeight: FontWeight.w500,
+              //                             color: Colors.white,
+              //                           ),
+              //                           textAlign: TextAlign.center,
+              //                         ),
+              //                       ),
+              //                     ],
+              //                   ),
+              //                 ),
+              //             ),
 
 
-                    );
-                  }
-                })
-               ),
+              //       );
+              //     }
+              //   })
+              //  ),
                
+
+
+
                           SizedBox(height: 10),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -436,125 +440,146 @@ class _HomeViewState extends State<HomeView> {
             ],),
             ),
             SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Pacotes de estilo de vida",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500
-                      )
-                      ),
-                      TextButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    20),
-                              ),
-                            ),
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.black)),
-                        onPressed: (){}, child: const Row(children: [
-                          Text("Ver todos"),
-                          Icon(Icons.arrow_forward_ios)
-                        ],)),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 15),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text("Pacotes de estilo de vida",
+            //           style: TextStyle(
+            //             fontSize: 25,
+            //             fontWeight: FontWeight.w500
+            //           )
+            //           ),
+            //           TextButton(
+            //               style: ButtonStyle(
+            //                 shape: MaterialStateProperty.all<
+            //                     RoundedRectangleBorder>(
+            //                   RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(
+            //                         20),
+            //                   ),
+            //                 ),
+            //                 foregroundColor:
+            //                     MaterialStateProperty.all(Colors.black)),
+            //             onPressed: (){}, child: const Row(children: [
+            //               Text("Ver todos"),
+            //               Icon(Icons.arrow_forward_ios)
+            //             ],)),
 
-                        GridView.builder(
-                          itemCount: services.length,
-                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                        ) , itemBuilder: (context,index){
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(packages_imagePaths[index],
-                                width: 80,
-                                height: 60,
-                                ),
-                                SizedBox(height: 2,),
-                              Expanded(
-                              child: Text(
-                                packages[index],
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors
-                                      .black,
-                                ),
-                                textAlign: TextAlign.center,
-                                softWrap: true,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),),
-                            ],),
-                          );
-                        }),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Testes Mais Popular",
-                                  style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                  ),
-                                TextButton(onPressed: (){}, child: Row(
-                                  children: [
-                                    Text("Ver todos"),
-                                    Icon(Icons.arrow_forward_ios)
-                                  ],
-                                ))
-                                ],
-                              )
-                            ],
-                          )
-                        ),
-                        SizedBox(height: 120,
-                        child: ListView.builder(
-                          itemBuilder: (context,index){
-                            return Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(10)
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(tests_imagePaths[index],
-                                  width: 60,
-                                  height: 60,
-                                  ),
-                                  SizedBox(height: 6,)
-                                ],
-                              ),
-                            );
-                          },
-                          itemCount: services.length,
-                          ),
-                        )
-                    ],)
-                ]
-              )
+            //             GridView.builder(
+            //               itemCount: services.length,
+            //               gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+            //               crossAxisCount: 3,
+            //               mainAxisSpacing: 10,
+            //               crossAxisSpacing: 10,
+            //             ) , itemBuilder: (context,index){
+            //               return Container(
+            //                 decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.circular(10),
+            //                 ),
+            //                 child: Column(
+            //                   mainAxisAlignment: MainAxisAlignment.center,
+            //                   children: [
+            //                     Image.asset(packages_imagePaths[index],
+            //                     width: 80,
+            //                     height: 60,
+            //                     ),
+            //                     SizedBox(height: 2,),
+            //                   Expanded(
+            //                   child: Text(
+            //                     packages[index],
+            //                     style: TextStyle(
+            //                       fontSize: 16,
+            //                       fontWeight: FontWeight.w500,
+            //                       color: Colors
+            //                           .black,
+            //                     ),
+            //                     textAlign: TextAlign.center,
+            //                     softWrap: true,
+            //                     maxLines: 2,
+            //                     overflow: TextOverflow.ellipsis,
+            //                   ),),
+            //                 ],),
+            //               );
+            //             }),
+            //             Padding(
+            //               padding: EdgeInsets.symmetric(horizontal: 15),
+            //               child: Column(
+            //                 children: [
+            //                   Row(
+            //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                     children: [
+            //                       Text("Testes Mais Popular",
+            //                       style: TextStyle(
+            //                       fontSize: 25,
+            //                       fontWeight: FontWeight.w500,
+            //                     ),
+            //                       ),
+            //                     TextButton(onPressed: (){}, child: Row(
+            //                       children: [
+            //                         Text("Ver todos"),
+            //                         Icon(Icons.arrow_forward_ios)
+            //                       ],
+            //                     ))
+            //                     ],
+            //                   )
+            //                 ],
+            //               )
+            //             ),
+            //             SizedBox(height: 120,
+            //             child: ListView.builder(
+            //               itemBuilder: (context,index){
+            //                 return Container(
+            //                   margin: const EdgeInsets.symmetric(vertical: 10),
+            //                   padding: const EdgeInsets.symmetric(horizontal: 10),
+            //                   decoration: BoxDecoration(
+            //                     shape: BoxShape.rectangle,
+            //                     borderRadius: BorderRadius.circular(10)
+            //                   ),
+            //                   child: Column(
+            //                     mainAxisAlignment: MainAxisAlignment.center,
+            //                     children: [
+            //                       Image.asset(tests_imagePaths[index],
+            //                       width: 60,
+            //                       height: 60,
+            //                       ),
+            //                       SizedBox(height: 6,)
+            //                     ],
+            //                   ),
+            //                 );
+            //               },
+            //               itemCount: services.length,
+            //               ),
+            //             )
+            //         ],)
+            //     ]
+            //   )
+            // )
+
+            Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Testes Populares",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500
+                    ),
+                    ),
+                  ],),
+              ],
+            ),
             )
+          
+          
+          
+          
           ],
         ),
       ),

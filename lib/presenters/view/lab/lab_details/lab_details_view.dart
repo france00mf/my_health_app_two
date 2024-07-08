@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_health_app_two/model/lab_model.dart';
 import 'package:my_health_app_two/providers/auth_provider.dart';
 
-class LabDetailsView extends StateFullWidget{
+class LabDetailsView extends StatefulWidget{
   final LabModel lab;
   final AuthProvider authProvider;
 
