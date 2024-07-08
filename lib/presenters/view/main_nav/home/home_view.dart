@@ -38,6 +38,14 @@ class _HomeViewState extends State<HomeView> {
     "lab1",
     "Lab2",
   ];
+    List<String> packages = [
+    "influenza Respiratória",
+    "Deficiência do ferro",
+    "fever",
+    "Gravidez",
+    "Infertilidade Masculina",
+    "Infertilidade Feminina",
+  ];
 
    List<String> packages_imagePaths = [
     'assets/images/influenza.jpg',

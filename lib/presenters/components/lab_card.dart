@@ -23,7 +23,7 @@ class LabCard extends StatelessWidget{
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircularAvatar(
+            CircleAvatar(
               backgroundColor: Color(0xFF3E69FE),
               radius: 30,
               child: Text(
@@ -56,10 +56,10 @@ class LabCard extends StatelessWidget{
                   ),
                   SizedBox(height: 16,),
                   ElevatedButton(onPressed: (){
-                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LabDetailsView(lab: lab,authProvider: AuthProvider(),)),
-                    ); 
+                  //  Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(builder: (context) => LabDetailsView(lab: lab,authProvider: AuthProvider(),)),
+                  //   ); 
                   }, child: const Text("Encomendar Agora"))
               ],)
           ],),
