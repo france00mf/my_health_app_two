@@ -572,6 +572,23 @@ class _HomeViewState extends State<HomeView> {
                       fontWeight: FontWeight.w500
                     ),
                     ),
+                    TextButton(
+                      style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    20), // Set a circular border radius
+                              ),
+                            ),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.black)),
+                                onPressed: (){},
+                                child:const Row(children: [
+                                        Text("Ver todos"),
+                            Icon(Icons.arrow_forward_ios),
+                                ],),
+                    )
                   ],),
               ],
             ),
