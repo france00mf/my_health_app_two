@@ -579,7 +579,7 @@ class _HomeViewState extends State<HomeView> {
           
           
           
-          
+          // Bottom of amount of widgets
           ],
         ),
       ),
