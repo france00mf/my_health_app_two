@@ -458,7 +458,9 @@ class _HomeViewState extends State<HomeView> {
                           Icon(Icons.arrow_forward_ios)
                         ],)),
 
-                        GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                        GridView.builder(
+                          itemCount: services.length,
+                          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
@@ -474,7 +476,7 @@ class _HomeViewState extends State<HomeView> {
                                 width: 80,
                                 height: 60,
                                 ),
-                                SizedBox(height: 2,)
+                                SizedBox(height: 2,),
                               Expanded(
                               child: Text(
                                 packages[index],
@@ -491,7 +493,56 @@ class _HomeViewState extends State<HomeView> {
                               ),),
                             ],),
                           );
-                        })
+                        }),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Testes Mais Popular",
+                                  style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                  ),
+                                TextButton(onPressed: (){}, child: Row(
+                                  children: [
+                                    Text("Ver todos"),
+                                    Icon(Icons.arrow_forward_ios)
+                                  ],
+                                ))
+                                ],
+                              )
+                            ],
+                          )
+                        ),
+                        SizedBox(height: 120,
+                        child: ListView.builder(
+                          itemBuilder: (context,index){
+                            return Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(tests_imagePaths[index],
+                                  width: 60,
+                                  height: 60,
+                                  ),
+                                  SizedBox(height: 6,)
+                                ],
+                              ),
+                            );
+                          },
+                          itemCount: services.length,
+                          ),
+                        )
                     ],)
                 ]
               )
